@@ -110,6 +110,7 @@ except KeyboardInterrupt:
 misty.stop_audio()
 misty.display_image("e_DefaultContent.jpg")
 misty.stop()
+misty.move_arms(random.randint(70, 89), random.randint(70, 89))
 
 introQuestions = ["Do you have any questions?", "What would you like to learn about F and M", "What's up... what do you wanna know?"]
 
