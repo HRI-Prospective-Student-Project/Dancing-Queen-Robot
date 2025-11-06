@@ -9,7 +9,7 @@ import subprocess
 import os
 
 app = Flask(__name__)
-MISTY_IP = "192.168.1.4"
+MISTY_IP = "192.168.1.10"
 
 misty = Robot(MISTY_IP)
 
@@ -19,6 +19,7 @@ misty.set_default_volume(20)
 @app.route('/')
 def index():
     """Home page - renders the index template"""
+    misty.stop_speaking()
     return render_template('indexenhanced.html')
 
 @app.route('/cs')
@@ -52,7 +53,7 @@ def misty_speak():
 def misty_goodbye():
 
     misty.speak("Goodbye")
-    os.system('start cmd /k "python run_command.py"')
+    os.system('start cmd /k "python DancingQueen.py"')
 
     return render_template('indexenhanced.html')
 

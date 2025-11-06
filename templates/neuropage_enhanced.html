@@ -58,6 +58,9 @@
       </nav>
       <div class="flex items-center gap-2">
         <a href="#apply" class="hidden sm:inline-flex bg-secondary text-white text-xs font-semibold px-3 py-2 rounded-full hover:bg-secondary/90 shadow">Admitted Day</a>
+         <a href="/" class="hidden sm:inline-flex bg-secondary text-white text-xs font-semibold px-3 py-2 rounded-full hover:bg-secondary/90 shadow">
+                ← Back to Home
+            </a>
         <button id="ttsBtn" class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-ink-200 hover:bg-ink-50 text-ink-700" aria-label="Read page intro"><i data-feather="volume-2" class="h-4 w-4"></i></button>
       </div>
     </div>
@@ -372,3 +375,6 @@
     }
     const tts = document.getElementById('ttsBtn');
     if(tts) tts.addEventListener('click', speakIntro);
+    </script>
+</body>
+</html>
