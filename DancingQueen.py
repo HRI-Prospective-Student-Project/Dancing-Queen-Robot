@@ -59,7 +59,6 @@ def wave_back(arm):
     waving_now = False
 
 def dance():
-    misty.drive(0, 20)
     misty.play_audio("s_Success3.wav")
     misty.move_arms(80, -80)
     misty.move_head(0, 20, 0)
@@ -73,6 +72,7 @@ person_detected = False
 moving = False # Whether Misty is moving or not
 
 misty.set_default_volume(10)
+misty.stop_audio()
 
 try:
     print("Stop the robot by pressing ctrl+C")

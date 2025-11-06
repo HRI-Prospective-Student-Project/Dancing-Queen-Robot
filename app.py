@@ -5,10 +5,11 @@ Flask Application for F&M Computer Science Major Page
 from flask import Flask, render_template, request, jsonify
 from mistyPy.Robot import Robot
 import requests
+import subprocess
+import os
 
 app = Flask(__name__)
 MISTY_IP = "192.168.1.10"
-
 
 misty = Robot(MISTY_IP)
 
@@ -18,7 +19,7 @@ misty.set_default_volume(20)
 @app.route('/')
 def index():
     """Home page - renders the index template"""
-    return render_template('index.html')
+    return render_template('indexenhanced.html')
 
 @app.route('/cs')
 def cs_page():
@@ -47,6 +48,13 @@ def misty_speak():
     misty.speak(text)
     return jsonify({"message": f"Misty speaking: {text}"})
 
+@app.route('/exit')
+def misty_goodbye():
+
+    misty.speak("Goodbye")
+    os.system('start cmd /k "python run_command.py"')
+
+    return render_template('indexenhanced.html')
 
 @app.errorhandler(404)
 def not_found(error):
