@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Franklin & Marshall · Computer Science</title>
+  <meta name="description" content="Discover Franklin & Marshall's Computer Science program—courses, research, faculty, outcomes—designed for curious builders and problem solvers." />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#002D72',
+            secondary: '#C8102E',
+            ink: {
+              50: '#F8FAFC', 100: '#F1F5F9', 200: '#E2E8F0', 300: '#CBD5E1',
+              400: '#94A3B8', 500: '#64748B', 600: '#475569', 700: '#334155',
+              800: '#1E293B', 900: '#0F172A'
+            },
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(2, 6, 23, .08)',
+            lift: '0 14px 40px rgba(2, 6, 23, .12)'
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <style>
+    .blob { filter: blur(40px); opacity:.25 }
+    @keyframes float { 0%,100%{ transform: translateY(0)} 50%{ transform: translateY(-8px)} }
+    .float { animation: float 9s ease-in-out infinite }
+    @media (prefers-reduced-motion: reduce) { .float { animation: none } }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-sky-50 to-teal-50 text-ink-800 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 dark:text-ink-100 min-h-screen">
+  <!-- Background decor -->
+  <div aria-hidden="true" class="pointer-events-none fixed inset-0 overflow-hidden -z-10">
+    <div class="blob float absolute -top-24 -left-16 h-80 w-80 rounded-full bg-indigo-400/50"></div>
+    <div class="blob float absolute bottom-0 right-0 h-96 w-96 rounded-full bg-teal-300/40" style="animation-delay:-5s"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 bg-white/70 backdrop-blur border-b border-white/50 shadow-soft">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2 text-primary font-extrabold tracking-tight">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10"><i data-feather="cpu" class="h-5 w-5"></i></span>
+        F&M Computer Science
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#why" class="hover:text-primary">Why CS at F&M</a>
+        <a href="#structure" class="hover:text-primary">Program</a>
+        <a href="#research" class="hover:text-primary">Research</a>
+        <a href="#outcomes" class="hover:text-primary">Outcomes</a>
+        <a href="#faq" class="hover:text-primary">FAQ</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href="#apply" class="hidden sm:inline-flex bg-secondary text-white text-xs font-semibold px-3 py-2 rounded-full hover:bg-secondary/90 shadow">Admitted Day</a>
+        <button id="ttsBtn" class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-ink-200 hover:bg-ink-50 text-ink-700" aria-label="Read page intro"><i data-feather="volume-2" class="h-4 w-4"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="why" class="relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-ink-900">Build tools. Ask big questions. <span class="bg-gradient-to-r from-primary to-teal-600 bg-clip-text text-transparent">Change what’s possible.</span></h1>
+        <p class="mt-4 text-ink-600">Our Computer Science program blends rigorous theory with hands‑on making—algorithms, systems, AI, and the societal impact of computing—so you can design, analyze, and lead.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#structure" class="inline-flex items-center gap-2 bg-primary text-white px-5 py-3 rounded-xl shadow-lift hover:-translate-y-0.5 transition"><i data-feather="book-open" class="h-5 w-5"></i> Explore the program</a>
+          <a href="#research" class="inline-flex items-center gap-2 bg-white/80 backdrop-blur border border-white/60 px-5 py-3 rounded-xl shadow-soft hover:-translate-y-0.5 transition"><i data-feather="flask" class="h-5 w-5 text-primary"></i> See research</a>
+        </div>
+        <dl class="mt-8 grid grid-cols-3 gap-4 text-center">
+          <div class="rounded-xl bg-white/70 backdrop-blur p-4 border border-white/60 shadow-soft">
+            <dt class="text-xs text-ink-500">Core Courses</dt>
+            <dd class="text-2xl font-extrabold text-primary">7</dd>
+          </div>
+          <div class="rounded-xl bg-white/70 backdrop-blur p-4 border border-white/60 shadow-soft">
+            <dt class="text-xs text-ink-500">Upper Electives</dt>
+            <dd class="text-2xl font-extrabold text-secondary">4</dd>
+          </div>
+          <div class="rounded-xl bg-white/70 backdrop-blur p-4 border border-white/60 shadow-soft">
+            <dt class="text-xs text-ink-500">Student‑Faculty Projects</dt>
+            <dd class="text-2xl font-extrabold text-teal-600">50+</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Hero card -->
+      <div class="relative">
+        <div class="absolute -inset-2 rounded-3xl bg-gradient-to-br from-primary/10 via-indigo-300/10 to-teal-300/10 blur-2xl"></div>
+        <div class="relative rounded-3xl bg-white/80 backdrop-blur border border-white/60 shadow-soft p-6">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-ink-100 p-4">
+              <i data-feather="layers" class="h-5 w-5 text-primary"></i>
+              <p class="mt-2 text-sm font-semibold">Foundations</p>
+              <p class="text-xs text-ink-600">Data structures, algorithms, discrete math.</p>
+            </div>
+            <div class="rounded-2xl border border-ink-100 p-4">
+              <i data-feather="cpu" class="h-5 w-5 text-teal-600"></i>
+              <p class="mt-2 text-sm font-semibold">Systems</p>
+              <p class="text-xs text-ink-600">Architecture, OS, networks, compilers.</p>
+            </div>
+            <div class="rounded-2xl border border-ink-100 p-4">
+              <i data-feather="aperture" class="h-5 w-5 text-secondary"></i>
+              <p class="mt-2 text-sm font-semibold">Intelligence</p>
+              <p class="text-xs text-ink-600">AI, ML, information theory, HCI.</p>
+            </div>
+            <div class="rounded-2xl border border-ink-100 p-4">
+              <i data-feather="users" class="h-5 w-5 text-indigo-600"></i>
+              <p class="mt-2 text-sm font-semibold">Impact</p>
+              <p class="text-xs text-ink-600">Ethics, privacy, policy, society.</p>
+            </div>
+          </div>
+          <div class="mt-4 text-xs text-ink-500">💡 Small classes. Close mentorship. Big outcomes.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAM STRUCTURE (Tabs) -->
+  <section id="structure" class="py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <h2 class="text-3xl font-extrabold tracking-tight">Program structure</h2>
+      <p class="mt-2 text-ink-600 max-w-2xl">A guided path through core theory with room to specialize.</p>
+
+      <div class="mt-6 rounded-2xl bg-white/80 backdrop-blur border border-white/60 shadow-soft p-2">
+        <div class="flex flex-wrap gap-2 p-2">
+          <button class="tab-btn active" data-tab="core">Core</button>
+          <button class="tab-btn" data-tab="math">Mathematics</button>
+          <button class="tab-btn" data-tab="electives">Electives</button>
+          <button class="tab-btn" data-tab="experience">Experiences</button>
+        </div>
+        <div class="p-4 md:p-6">
+          <!-- Core -->
+          <div class="tab-panel" id="tab-core">
+            <div class="grid md:grid-cols-2 gap-4">
+              <ul class="space-y-2">
+                <li class="flex items-center gap-2"><i data-feather="book" class="text-secondary"></i> CPS 111 – Computer Science I</li>
+                <li class="flex items-center gap-2"><i data-feather="book" class="text-secondary"></i> CPS 112 – Computer Science II</li>
+                <li class="flex items-center gap-2"><i data-feather="book" class="text-secondary"></i> CPS 222 – Computer Science III</li>
+                <li class="flex items-center gap-2"><i data-feather="book" class="text-secondary"></i> CPS 237 – Computational Discrete Math</li>
+              </ul>
+              <ul class="space-y-2">
+                <li class="flex items-center gap-2"><i data-feather="cpu" class="text-primary"></i> CPS 242 – Computer Organization</li>
+                <li class="flex items-center gap-2"><i data-feather="git-commit" class="text-primary"></i> CPS 261 – Algorithms</li>
+                <li class="flex items-center gap-2"><i data-feather="box" class="text-primary"></i> CPS 337 – Advanced CS Core</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Math -->
+          <div class="tab-panel hidden" id="tab-math">
+            <div class="rounded-xl border border-ink-100 p-4 grid sm:grid-cols-2 gap-3">
+              <div class="flex items-center gap-2"><i data-feather="check" class="text-secondary"></i> MAT 109 – Calculus I</div>
+              <div class="flex items-center gap-2"><i data-feather="check" class="text-secondary"></i> MAT 110 – Calculus II</div>
+              <div class="flex items-center gap-2 sm:col-span-2"><i data-feather="check" class="text-secondary"></i> MAT 216 <span class="text-ink-500">or</span> MAT 229</div>
+            </div>
+          </div>
+          <!-- Electives -->
+          <div class="tab-panel hidden" id="tab-electives">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="rounded-xl border border-ink-100 p-4">
+                <h3 class="font-semibold">CS (300+)</h3>
+                <ul class="mt-2 list-disc list-inside text-sm text-ink-600 space-y-1">
+                  <li>CPS 360 – Intro to Machine Learning</li>
+                  <li>CPS 363 – Intro to Bioinformatics</li>
+                  <li>CPS 367 – Artificial Intelligence</li>
+                  <li>CPS 372 – Information Theory</li>
+                </ul>
+              </div>
+              <div class="rounded-xl border border-ink-100 p-4">
+                <h3 class="font-semibold">Related fields</h3>
+                <ul class="mt-2 list-disc list-inside text-sm text-ink-600 space-y-1">
+                  <li>PHI 244 – Symbolic Logic</li>
+                  <li>PSY/SPM 305 – Cognitive Psychology</li>
+                  <li>PHI/PSY 203 – Embodied Cognition</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Experiences -->
+          <div class="tab-panel hidden" id="tab-experience">
+            <div class="grid sm:grid-cols-3 gap-3">
+              <div class="rounded-xl border border-ink-100 p-4">
+                <i data-feather="mic" class="text-primary"></i>
+                <p class="mt-2 font-semibold">Hackathons</p>
+                <p class="text-sm text-ink-600">Team‑up, prototype fast, learn by doing.</p>
+              </div>
+              <div class="rounded-xl border border-ink-100 p-4">
+                <i data-feather="code" class="text-secondary"></i>
+                <p class="mt-2 font-semibold">Research Assistantships</p>
+                <p class="text-sm text-ink-600">AI ethics, robotics, data privacy, HCI.</p>
+              </div>
+              <div class="rounded-xl border border-ink-100 p-4">
+                <i data-feather="briefcase" class="text-teal-600"></i>
+                <p class="mt-2 font-semibold">Internships</p>
+                <p class="text-sm text-ink-600">Real‑world impact with faculty support.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH & LABS -->
+  <section id="research" class="py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-3 gap-6 items-start">
+        <div class="lg:col-span-1">
+          <h2 class="text-3xl font-extrabold tracking-tight">Research & labs</h2>
+          <p class="mt-2 text-ink-600">Work side‑by‑side with faculty on open problems. Many projects start in class—and grow into publications or conference demos.</p>
+          <ul class="mt-4 space-y-2 text-sm text-ink-700">
+            <li class="flex gap-2"><i data-feather="check-circle" class="text-teal-600"></i> Human‑centered AI & ethics</li>
+            <li class="flex gap-2"><i data-feather="check-circle" class="text-teal-600"></i> Robotics & perception</li>
+            <li class="flex gap-2"><i data-feather="check-circle" class="text-teal-600"></i> Bioinformatics & computation</li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2 grid sm:grid-cols-2 gap-4">
+          <article class="rounded-2xl bg-white/80 backdrop-blur border border-white/60 shadow-soft p-4">
+            <header class="flex items-center gap-2 text-sm font-semibold"><i data-feather="git-branch" class="text-primary"></i> Assistive Robotics</header>
+            <p class="mt-2 text-sm text-ink-700">Building tour‑guide robots that track visitors, explain exhibits, and adapt using probabilistic models.</p>
+            <footer class="mt-3 text-xs text-ink-500">Faculty: Prof. Novak · Student teams every semester</footer>
+          </article>
+          <article class="rounded-2xl bg-white/80 backdrop-blur border border-white/60 shadow-soft p-4">
+            <header class="flex items-center gap-2 text-sm font-semibold"><i data-feather="activity" class="text-secondary"></i> Responsible AI</header>
+            <p class="mt-2 text-sm text-ink-700">Auditing bias in models and designing interfaces that clarify uncertainty and provenance.</p>
+            <footer class="mt-3 text-xs text-ink-500">Faculty: Prof. Jensen · Joint with Philosophy</footer>
+          </article>
+          <article class="rounded-2xl bg-white/80 backdrop-blur border border-white/60 shadow-soft p-4">
+            <header class="flex items-center gap-2 text-sm font-semibold"><i data-feather="dna" class="text-teal-600"></i> Bioinformatics</header>
+            <p class="mt-2 text-sm text-ink-700">Tools for gene expression analysis and ecological datasets—fast pipelines and visual summaries.</p>
+            <footer class="mt-3 text-xs text-ink-500">Faculty: Prof. Mason · Cross‑listed with Biology</footer>
+          </article>
+          <article class="rounded-2xl bg-white/80 backdrop-blur border border-white/60 shadow-soft p-4">
+            <header class="flex items-center gap-2 text-sm font-semibold"><i data-feather="radio" class="text-indigo-600"></i> Networks & Systems</header>
+            <p class="mt-2 text-sm text-ink-700">Performance and reliability from the hardware to the cloud—instrumentation, logs, and proofs.</p>
+            <footer class="mt-3 text-xs text-ink-500">Faculty: Prof. De Santo</footer>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES TIMELINE -->
+  <section id="outcomes" class="py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <h2 class="text-3xl font-extrabold tracking-tight">What happens after F&M?</h2>
+      <div class="mt-6 relative pl-6">
+        <div class="absolute left-2 top-0 bottom-0 w-px bg-ink-200"></div>
+        <ol class="space-y-6">
+          <li class="relative">
+            <span class="absolute -left-2 top-1.5 h-3 w-3 rounded-full bg-primary"></span>
+            <div class="rounded-xl bg-white/80 backdrop-blur border border-white/60 shadow-soft p-4">
+              <p class="font-semibold">Software Engineering · Data Science</p>
+              <p class="text-sm text-ink-600">Graduates land roles in engineering, analytics, and research at startups, labs, and large tech.</p>
+            </div>
+          </li>
+          <li class="relative">
+            <span class="absolute -left-2 top-1.5 h-3 w-3 rounded-full bg-secondary"></span>
+            <div class="rounded-xl bg-white/80 backdrop-blur border border-white/60 shadow-soft p-4">
+              <p class="font-semibold">Graduate School</p>
+              <p class="text-sm text-ink-600">MS/PhD in CS, AI/ML, HCI, Bioinformatics; strong faculty recommendations and research prep.</p>
+            </div>
+          </li>
+          <li class="relative">
+            <span class="absolute -left-2 top-1.5 h-3 w-3 rounded-full bg-teal-600"></span>
+            <div class="rounded-xl bg-white/80 backdrop-blur border border-white/60 shadow-soft p-4">
+              <p class="font-semibold">Interdisciplinary Paths</p>
+              <p class="text-sm text-ink-600">CS × Biology, Psychology, Economics, or Public Policy—build a rare combo that stands out.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="text-3xl font-extrabold tracking-tight">Frequently asked</h2>
+      <div class="mt-6 space-y-3">
+        <details class="group rounded-xl bg-white/80 backdrop-blur border border-white/60 shadow-soft p-4">
+          <summary class="flex cursor-pointer items-center justify-between">
+            <span class="font-semibold">How big are classes?</span>
+            <i data-feather="chevron-down" class="group-open:rotate-180 transition h-4 w-4"></i>
+          </summary>
+          <p class="mt-2 text-sm text-ink-700">Most upper‑level courses are 15–25 students with direct faculty mentorship.</p>
+        </details>
+        <details class="group rounded-xl bg-white/80 backdrop-blur border border-white/60 shadow-soft p-4">
+          <summary class="flex cursor-pointer items-center justify-between">
+            <span class="font-semibold">Can I do research as a first‑year?</span>
+            <i data-feather="chevron-down" class="group-open:rotate-180 transition h-4 w-4"></i>
+          </summary>
+          <p class="mt-2 text-sm text-ink-700">Yes—join reading groups, assist labs, or propose an independent project with a mentor.</p>
+        </details>
+        <details class="group rounded-xl bg-white/80 backdrop-blur border border-white/60 shadow-soft p-4">
+          <summary class="flex cursor-pointer items-center justify-between">
+            <span class="font-semibold">What if I’m new to programming?</span>
+            <i data-feather="chevron-down" class="group-open:rotate-180 transition h-4 w-4"></i>
+          </summary>
+          <p class="mt-2 text-sm text-ink-700">Start with CPS 111 and our peer‑led workshops. Curiosity matters more than prior experience.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLY / CONTACT -->
+  <section id="apply" class="py-14">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+      <div class="relative">
+        <div class="absolute -inset-2 rounded-3xl bg-gradient-to-br from-secondary/10 via-indigo-300/10 to-teal-300/10 blur-2xl"></div>
+        <div class="relative rounded-3xl bg-white/80 backdrop-blur border border-white/60 shadow-soft px-6 py-8">
+          <h3 class="text-2xl font-extrabold">Admitted Students Day</h3>
+          <p class="mt-2 text-ink-600">Meet faculty, tour labs, and sit in on a class. Bring questions—we’ll bring demos.</p>
+          <div class="mt-6 flex flex-wrap justify-center gap-3">
+            <a href="#" class="inline-flex items-center gap-2 bg-primary text-white px-5 py-3 rounded-xl shadow-lift hover:-translate-y-0.5 transition"><i data-feather="calendar" class="h-5 w-5"></i> Reserve a spot</a>
+            <a href="mailto:novak@fandm.edu" class="inline-flex items-center gap-2 bg-white/80 backdrop-blur border border-white/60 px-5 py-3 rounded-xl shadow-soft"><i data-feather="mail" class="h-5 w-5 text-primary"></i> Email Prof. Novak</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/60 bg-white/70 backdrop-blur py-6 text-center text-xs text-ink-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">© <span id="year"></span> Franklin & Marshall College · Computer Science</div>
+  </footer>
+
+  <!-- Sticky action buttons -->
+  <div class="fixed left-1/2 -translate-x-1/2 bottom-6 flex gap-3">
+    <button id="scrollTop" class="hidden w-10 h-10 rounded-lg bg-white/90 backdrop-blur border border-white/70 shadow-soft items-center justify-center" aria-label="Back to top"><i data-feather="arrow-up" class="h-4 w-4"></i></button>
+    <a href="#apply" class="w-10 h-10 rounded-lg bg-primary text-white shadow-lift flex items-center justify-center" aria-label="Admitted Day"><i data-feather="map-pin" class="h-4 w-4"></i></a>
+  </div>
+
+  <script>
+    // Icons and year
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.feather) feather.replace();
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+
+    // Tabs
+    const btns = document.querySelectorAll('.tab-btn');
+    const panels = {
+      core: document.getElementById('tab-core'),
+      math: document.getElementById('tab-math'),
+      electives: document.getElementById('tab-electives'),
+      experience: document.getElementById('tab-experience')
+    };
+    function setActive(key){
+      btns.forEach(b=>b.classList.toggle('active', b.dataset.tab===key));
+      Object.entries(panels).forEach(([k,el])=>{
+        if(!el) return; el.classList.toggle('hidden', k!==key);
+      });
+    }
+    btns.forEach(b=>{
+      b.classList.add('inline-flex','items-center','gap-2','px-3','py-2','rounded-lg','text-sm','font-semibold','text-ink-600','hover:bg-ink-50','aria-selected:false');
+      b.addEventListener('click', ()=> setActive(b.dataset.tab));
+    });
+    setActive('core');
+
+    // Scroll to top visibility
+    const topBtn = document.getElementById('scrollTop');
+    const observer = new IntersectionObserver(([entry])=>{
+      if(!topBtn) return;
+      topBtn.classList.toggle('hidden', entry.isIntersecting);
+    }, { rootMargin: '-80px 0px 0px 0px' });
+    observer.observe(document.querySelector('header'));
+    if(topBtn) topBtn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+    // TTS button using local endpoint
+    async function speakIntro(){
+      const text = 'Welcome to Franklin and Marshall Computer Science. Explore the program, research, and outcomes.';
+      try {
+        await fetch('http://127.0.0.1:5001/speak', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text })
+        });
+      } catch(e){ console.warn('TTS unavailable:', e); }
+    }
+    const tts = document.getElementById('ttsBtn');
+    if(tts) tts.addEventListener('click', speakIntro);
+  </script>
+</body>
+</html>
