@@ -40,7 +40,7 @@
             <h2 class="text-xl font-bold text-primary mb-4 flex items-center">
                 <i data-feather="info" class="mr-2"></i> What is Neuroscience at F&M?
             </h2>
-            <p class="mb-4 text-gray-700">
+            <p class="mb-4 text-gray-700" id="NeuroContent">
                 Neuroscience at F&M is offered through the Biological Foundations of Behavior Program. 
                 It’s an interdisciplinary major that studies the nervous system from molecules to behavior, 
                 drawing on biology, psychology, chemistry, physics, and mathematics.
@@ -223,6 +223,21 @@
 
     <script>
         feather.replace();
+
+        function speakWithMisty() {
+            var text = document.getElementById("NeuroContent").innerHTML
+            console.log(text)
+            fetch("http://127.0.0.1:5001/speak", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ 'text': text })
+            })
+            .then(r => r.text())
+            .then(console.log)
+            .catch(console.error)
+    }
+
+    speakWithMisty()
     </script>
 </body>
 </html>

@@ -74,6 +74,7 @@ def dance():
 person_detected = False
 song_is_playing = False
 Duration = 0
+moving = True # Whether Misty is moving or not
 
 misty.set_default_volume(30)
 
@@ -82,6 +83,10 @@ while person_detected == False:
     dance()
     # misty.play_audio("sweetcaroline.mp3")
     time.sleep(.5)
+
+    if moving == False:
+        misty.drive(0, 20)
+        moving = True
 
     if keyboard.is_pressed("space"):
         # put wave greeting and introduction

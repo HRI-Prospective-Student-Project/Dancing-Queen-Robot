@@ -41,41 +41,5 @@
     
     <p class="text-gray-500 mt-8">Tap an option to explore related courses</p>
   </div>
-
-  <!-- <script>
-    function speakWithMisty(text) {
-      console.log(text)
-      fetch("http://127.0.0.1:5001/speak", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ 'text': text })
-      })
-      .then(r => r.text())
-      .then(console.log)
-      .catch(console.error)
-    }
-
-    feather.replace();
-
-    async function speakFromPage(filePath, elementId) {
-      const response = await fetch(filePath);
-      const html = await response.text();
-
-      const parser = new DOMParser();
-      const doct = parser.parseFromString(html, "text/html");
-
-      console.log(doct)
-
-      const element = doct.getElementById(elementId);
-      if (!element) {
-        console.error("No element found with ID:", elementId);
-        return;
-      }
-
-      const text = element.innerText.trim();
-      speakWithMisty(text);
-    }
-  </script> -->
-
 </body>
 </html>

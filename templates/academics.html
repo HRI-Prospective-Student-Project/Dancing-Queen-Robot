@@ -11,7 +11,7 @@
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen flex items-center justify-center p-4">
   <div class="text-center max-w-2xl w-full">
-    <h1 class="text-3xl font-bold text-primary mb-8">Learn More about FandM</h1>
+    <h1 class="text-3xl font-bold text-primary mb-8" id = "h1content">Learn More about F and M</h1>
     
     <div class="grid grid-cols-2 gap-6">
       <a href="/cs" class="choice-box choice-a">
@@ -40,5 +40,24 @@
     </div>
     
     <p class="text-gray-500 mt-8">Tap an option to explore related courses</p>
+
+    <script>
+        feather.replace();
+
+    function speakWithMisty() {
+        var text = document.getElementById("h1content").innerHTML
+        console.log(text)
+        fetch("http://127.0.0.1:5001/speak", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ 'text': text })
+        })
+        .then(r => r.text())
+        .then(console.log)
+        .catch(console.error)
+    }
+
+    speakWithMisty()
+</script>
   </div>
   
