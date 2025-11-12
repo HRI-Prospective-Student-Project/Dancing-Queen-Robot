@@ -38,6 +38,17 @@
       </div>
     </section>
 
+    <!-- CPU Animation -->
+    <section id="cpuAnim" class="rounded-2xl bg-white shadow p-5 border border-slate-100 mb-6 hidden text-center">
+      <p class="text-sm uppercase tracking-wider text-slate-500 mb-2">Computer is choosing…</p>
+      <div class="flex flex-col items-center gap-3">
+      <!-- If you have a generic shuffle GIF, put its path in data-shuffle below -->
+      <img id="cpuGif" alt="CPU choice animation" class="h-24 w-24 object-contain select-none" data-shuffle="/assets/rps-shuffle.gif" />
+      <div id="cpuEmoji" class="text-5xl leading-none select-none hidden">✊</div>
+    </div>
+  </section>
+
+
     <!-- Result Banner -->
     <section id="resultBanner" class="rounded-2xl bg-white shadow p-5 border border-slate-100 mb-6 hidden">
       <p id="roundResult" class="text-lg font-semibold"></p>
@@ -148,33 +159,84 @@
       });
     }
 
-    function playRound(playerMove) {
-      if (isGameOver()) return;
-      const c = cpuPick();
+    // UPDATED: animated version
+async function playRound(playerMove) {
+  if (isGameOver()) return;
 
-      if (playerMove === c) {
-        banner(true, 'Tie 🤝', `${fmt(playerMove)} ties ${fmt(c)}.`);
-        appendHistory(`Tie — You: ${fmt(playerMove)} | CPU: ${fmt(c)}`);
-      } else if (beats[playerMove] === c) {
-        player++;
-        banner(true, 'You win this round! ✅', `${fmt(playerMove)} beats ${fmt(c)}.`);
-        appendHistory(`Win — ${fmt(playerMove)} beats ${fmt(c)}.`);
-      } else {
-        cpu++;
-        banner(true, 'You lose this round ❌', `${fmt(c)} beats ${fmt(playerMove)}.`);
-        appendHistory(`Loss — ${fmt(c)} beats ${fmt(playerMove)}.`);
-      }
+  const c = cpuPick();        // computer's final move (decided now)
+  disableChoices(true);       // lock inputs during animation
+  await showCpuAnimation(c);  // run shuffle + reveal GIF/emoji
 
-      updateScores();
+  // --- scoring logic (unchanged) ---
+  if (playerMove === c) {
+    banner(true, 'Tie 🤝', `${fmt(playerMove)} ties ${fmt(c)}.`);
+    appendHistory(`Tie — You: ${fmt(playerMove)} | CPU: ${fmt(c)}`);
+  } else if (beats[playerMove] === c) {
+    player++;
+    banner(true, 'You win this round! ✅', `${fmt(playerMove)} beats ${fmt(c)}.`);
+    appendHistory(`Win — ${fmt(playerMove)} beats ${fmt(c)}.`);
+  } else {
+    cpu++;
+    banner(true, 'You lose this round ❌', `${fmt(c)} beats ${fmt(playerMove)}.`);
+    appendHistory(`Loss — ${fmt(c)} beats ${fmt(playerMove)}.`);
+  }
 
-      if (isGameOver()) {
-        gameStatusEl.textContent = winnerText();
-        disableChoices(true);
-      } else {
-        const target = bestOfThree ? 2 : 5;
-        gameStatusEl.textContent = `First to ${target}. Keep going!`;
-      }
-    }
+  updateScores();
+
+  if (isGameOver()) {
+    gameStatusEl.textContent = winnerText();
+    // keep inputs disabled at game end
+  } else {
+    const target = bestOfThree ? 2 : 5;
+    gameStatusEl.textContent = `First to ${target}. Keep going!`;
+    disableChoices(false); // unlock inputs for next round
+  }
+}
+const choiceGifs = {
+  rock:     "./assets/rps-rock.gif",
+  paper:    "./assets/rps-paper.gif",
+  scissors: "/assets/rps-scissors.gif",
+};
+
+const cpuAnim  = document.getElementById('cpuAnim'); // wrapper section
+const cpuGif   = document.getElementById('cpuGif');  // <img>
+const cpuEmoji = document.getElementById('cpuEmoji'); // emoji fallback
+
+function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+async function showCpuAnimation(finalMove) {
+  const shuffleSrc = cpuGif?.dataset?.shuffle || ""; // optional generic shuffle gif
+  cpuAnim.classList.remove('hidden');
+
+  if (shuffleSrc) {
+    cpuEmoji.classList.add('hidden');
+    cpuGif.classList.remove('hidden');
+    cpuGif.src = shuffleSrc;           // show generic shuffle
+    await sleep(800);
+  } else {
+    // emoji shuffle fallback
+    cpuGif.classList.add('hidden');
+    cpuEmoji.classList.remove('hidden');
+    const cycle = ['✊','✋','✌️','✋','✊','✌️'];
+    for (let i = 0; i < cycle.length; i++) { cpuEmoji.textContent = cycle[i]; await sleep(120); }
+  }
+
+  // reveal final move
+  const src = "./assets/rps-rock.gif";
+  if (src) {
+    cpuEmoji.classList.add('hidden');
+    cpuGif.classList.remove('hidden');
+    cpuGif.src = src;
+  } else {
+    cpuGif.classList.add('hidden');
+    cpuEmoji.classList.remove('hidden');
+    cpuEmoji.textContent = finalMove === 'rock' ? '✊' : finalMove === 'paper' ? '✋' : '✌️';
+  }
+
+  await sleep(30000);
+  cpuAnim.classList.add('hidden');
+}
+
 
     function fmt(move) {
       return move.charAt(0).toUpperCase() + move.slice(1);
