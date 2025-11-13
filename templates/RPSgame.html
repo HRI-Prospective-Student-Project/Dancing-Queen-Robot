@@ -92,7 +92,6 @@
           <button id="resetBtn" class="px-4 py-2 rounded-xl bg-accent text-white font-semibold shadow hover:shadow-lg transition active:scale-[0.98]">Reset</button>
           <button id="bestOfBtn" class="px-4 py-2 rounded-xl border border-slate-200 font-semibold shadow hover:shadow-lg transition active:scale-[0.98]">Toggle Best‑of‑3 / First‑to‑5</button>
         </div>
-        <p class="text-xs text-slate-500">Tip: Press <kbd>R</kbd>, <kbd>P</kbd>, or <kbd>S</kbd> on your keyboard.</p>
       </div>
     </section>
   </main>
@@ -210,6 +209,7 @@ async function playRound(playerMove) {
   if (isGameOver()) {
     gameStatusEl.textContent = winnerText();
     directSpeak(winnerText())
+    directSpeak("Do you want to play again? Click reset")
     // keep inputs disabled at game end
   } else {
     const target = bestOfThree ? 2 : 5;
@@ -311,14 +311,6 @@ async function showCpuAnimation(finalMove) {
     // Event listeners for buttons
     document.querySelectorAll('.choice').forEach(btn => {
       btn.addEventListener('click', () => playRound(btn.dataset.move));
-    });
-
-    // Keyboard shortcuts R / P / S
-    window.addEventListener('keydown', (e) => {
-      const key = e.key.toLowerCase();
-      if (key === 'r') playRound('rock');
-      if (key === 'p') playRound('paper');
-      if (key === 's') playRound('scissors');
     });
 
     resetBtn.addEventListener('click', resetGame);
