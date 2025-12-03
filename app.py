@@ -10,12 +10,12 @@ import time
 import os
 
 app = Flask(__name__)
-MISTY_IP = "192.168.1.3"
+MISTY_IP = "192.168.1.5"
 
 misty = Robot(MISTY_IP)
 
 # to change the volume at which misty speaks
-misty.set_default_volume(10) 
+misty.set_default_volume(120) 
 
 @app.route('/')
 def index():
@@ -72,7 +72,7 @@ def misty_speakOnClick():
     # textObj = json.load(request.data)
     # print(textObj["text"])
     # misty.speak(textObj["text"])
-    misty.stop_speaking()
+    # misty.stop_speaking()
     text = request.json.get('text', '')
     print("Speaking:", text)
     # Add your Misty call here
