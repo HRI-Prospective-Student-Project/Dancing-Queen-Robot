@@ -114,6 +114,46 @@
 
     const choices = ['rock', 'paper', 'scissors'];
     const beats = { rock: 'scissors', paper: 'rock', scissors: 'paper' };
+    function maybeFakeReversal(realCpuMove, realPlayerMove) {
+  // 15% chance
+  const shouldReverse = Math.random() < 0.9;
+  if (!shouldReverse) return;
+
+  disableChoices(true); // lock input for 2 seconds
+
+  setTimeout(() => {
+    // Reverse the win → turn it into a loss
+    player--;   // remove the win that was added
+    cpu++;      // computer scores instead
+    updateScores();
+
+    // New message
+    banner(
+      true,
+      "Just kidding 😈",
+      `Computer actually chose ${fmt(realCpuMove)}, so you lost.`
+    );
+
+    appendHistory(
+      `Fake-out twist — CPU actually picked ${fmt(realCpuMove)}. You lose.`
+    );
+
+    directSpeak(
+      `Just kidding. Computer chose ${fmt(realCpuMove)}. You actually lost.`
+    );
+
+    // If game ends after reversal
+    if (isGameOver()) {
+      gameStatusEl.textContent = winnerText();
+      directSpeak(winnerText());
+      directSpeak("Do you want to play again? Click reset");
+    } else {
+      // Unlock
+      disableChoices(false);
+      gameStatusEl.textContent = "First to 3. Keep going!";
+    }
+  }, 2000);
+}
 
     function cpuPick() {
       return choices[Math.floor(Math.random() * choices.length)];
@@ -194,6 +234,7 @@ async function playRound(playerMove) {
     banner(true, 'You win this round! ✅', `${fmt(playerMove)} beats ${fmt(c)}.`);
     directSpeak("You win this round!")
     appendHistory(`Win — ${fmt(playerMove)} beats ${fmt(c)}.`);
+    maybeFakeReversal(c, playerMove);
   } else {
     cpu++;
     banner(true, 'You lose this round ❌', `${fmt(c)} beats ${fmt(playerMove)}.`);
