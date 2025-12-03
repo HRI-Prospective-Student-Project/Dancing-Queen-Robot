@@ -4,18 +4,27 @@ Flask Application for F&M Computer Science Major Page
 
 from flask import Flask, render_template, request, jsonify
 from mistyPy.Robot import Robot
-from DancingQueen import dance
 import requests
 import time
 import os
 
 app = Flask(__name__)
-MISTY_IP = "192.168.1.5"
+MISTY_IP = "192.168.1.4"
 
 misty = Robot(MISTY_IP)
 
 # to change the volume at which misty speaks
 misty.set_default_volume(120) 
+
+def dance():
+    misty.play_audio("s_Success3.wav")
+    misty.move_arms(80, -80)
+    misty.move_head(0, 20, 0)
+    time.sleep(0.5)
+    misty.move_arms(-80, 80)
+    misty.move_head(0, -20, 0)
+    time.sleep(.5)
+    misty.display_image("e_Joy3.jpg")
 
 @app.route('/')
 def index():
@@ -83,21 +92,26 @@ def misty_speakOnClick():
 @app.route('/mistyStart', methods = ["POST"])
 def misty_start():
     misty.move_arm("right", 0)
-    time.sleep(.2)
-    misty.move_arm("right", 90)
+    time.sleep(.5)
     misty.speak("Rock")
-    time.sleep(.2)
+    misty.move_arm("right", 90)
+
+    time.sleep(.5)
     misty.move_arm("left", 0)
-    time.sleep(.2)
-    misty.move_arm("left", 90)
     misty.speak("Paper")
-    time.sleep(.2)
-    misty.move_arms(0)
-    time.sleep(.2)
-    misty.move_arms(90)
+    misty.move_arm("left", 90)
+
+    time.sleep(.5)
+    misty.move_arms(0, 0)
     misty.speak("Scissor")
-    time.sleep(.2)
+    misty.move_arms(90, 90)
+
+    time.sleep(.5)
+    misty.move_arms(0, 0)
     misty.speak("Shoot")
+    misty.move_arms(90, 90)
+
+    misty.stop()
     
     return jsonify({"message": "Misty is starting"})
 
@@ -108,13 +122,22 @@ def misty_direct():
 
     misty.speak(text)
 
-    if ("lose" in text or "Computer" in text):
+    if ("lose" in text):
+        print("HERE lose")
         dance()
+        time.sleep(.5)
         dance()
-        dance()
+        misty.move_arms(90)
     elif("kidding" in text ):
-        misty.speak("Hahahaha")
-        misty.display_image["e_Surprise.jpg"]
+        print("HERE KIDDING")
+        #time.sleep(10)
+        misty.drive_time(0, 30, 14500)
+        misty.display_image("e_Joy.jpg")
+        misty.play_audio("s_Joy.wav")
+        misty.speak("HahahahahaHahahahahaHahahahaha" \
+        "HahahahahaHahahahahaHa     hahahahaHahahahahahahahaha     hahahahaHahahahahahahahaha")
+
+    misty.display_image("e_DefaultContent.jpg")
 
     return jsonify({"message": "text"})
 

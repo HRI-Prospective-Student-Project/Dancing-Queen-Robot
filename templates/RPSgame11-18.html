@@ -126,7 +126,7 @@
     player--;   // remove the win that was added
     cpu++;      // computer scores instead
     updateScores();
-
+    
     // New message
     banner(
       true,
@@ -139,7 +139,7 @@
     );
 
     directSpeak(
-      `Just kidding. Computer chose ${fmt(realCpuMove)}. You actually lost.`
+      `Just kidding. Computer chose ${fmt(realCpuMove)}. You actually lost. hahahahahahaha`
     );
 
     // If game ends after reversal
@@ -204,7 +204,7 @@
 
     function winnerText() {
       if (player > cpu) return 'You win the game! 🎉';
-      if (cpu > player) return 'Computer wins the game! 🤖';
+      if (cpu > player) return 'Computer wins the game!🤖';
       return 'It\'s a draw!';
     }
 
@@ -238,7 +238,7 @@ async function playRound(playerMove) {
   } else {
     cpu++;
     banner(true, 'You lose this round ❌', `${fmt(c)} beats ${fmt(playerMove)}.`);
-    directSpeak("You lose this round")
+    directSpeak("You lose this round hahahahahaha")
     appendHistory(`Loss — ${fmt(c)} beats ${fmt(playerMove)}.`);
   }
 
@@ -314,7 +314,7 @@ async function showCpuAnimation(finalMove) {
   const cycle = ['✊', '✋', '✌️', '✋', '✊', '✌️'];
   for (let i = 0; i < cycle.length; i++) {
     cpuEmoji.textContent = cycle[i];
-    await sleep(500);
+    await sleep(700);
   }
 
   // Show the final emoji choice
