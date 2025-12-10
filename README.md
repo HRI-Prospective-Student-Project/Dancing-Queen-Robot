@@ -159,12 +159,6 @@ Troubleshooting & Tips
 - If you see network or connection errors, verify the robot and your development machine are on the same network and confirm the robot IP.
 - Many Misty commands assume audio assets and images are available on the robot (e.g., `s_Success3.wav`, `e_Joy3.jpg`). If a command fails to find an asset, either upload the asset to the robot via the Misty tools or change the filename used in code.
 
-Contributing / Next Steps
-- If you want a more portable configuration, consider adding a single config file (e.g., `config.ini` or environment variables) to centralize the `MISTY_IP` and other runtime options.
-- If you want, I can:
-  - Add a `README` section with example screenshots and a quick demo GIF.
-  - Create a `config.py` to centralize IP settings and update scripts to use it.
-
 License
 - This repository contains code derived from Misty Robotics samples. The `Examples/generate_robot.py` file includes a Misty Robotics Apache 2.0 header; respect the respective licenses when re-using code.
 
