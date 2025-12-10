@@ -4,7 +4,7 @@ import random
 import time
 # import math
 
-MISTY_IP = "192.168.1.5"
+MISTY_IP = "192.168.1.9"
 
 misty = Robot(MISTY_IP)
 
